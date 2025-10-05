@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AuraRain - Direct NASA Forecast</title>
+    <title>AuraRain - Historical Weather Likelihood</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,15 +14,18 @@
         <header>
             <img src="https://www.nasa.gov/wp-content/themes/nasa/assets/images/nasa-logo.svg" alt="NASA Logo" class="nasa-logo">
             <h1>AuraRain</h1>
-            <p class="subtitle">A precipitation forecast using the NASA POWER API.</p>
+            <p class="subtitle">Historical weather likelihood, powered by 20 years of NASA data.</p>
         </header>
         <main>
+            <div class="input-group">
+                <label for="dateInput">Select a Date:</label>
+                <input type="date" id="dateInput">
+            </div>
             <div class="search-box">
-                <button id="checkLocationBtn">Will it Rain at My Location?</button>
+                <button id="checkLocationBtn">Calculate Likelihood at My Location</button>
             </div>
             <div id="result" class="result-box">
-                <p>Click the button to check the forecast for your current location.</p>
-                <p><small>(You will be asked to share your location)</small></p>
+                <p>Select a future date to see the historical weather likelihood for your location.</p>
             </div>
         </main>
         <footer>
