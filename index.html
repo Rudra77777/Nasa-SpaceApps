@@ -1,79 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AuraRain - NASA Space Apps 2025</title>
-    <link rel="stylesheet" href="landing.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AuraRain - NASA Space Apps 2025</title>
+<link rel="stylesheet" href="landing.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="background-gradient"></div>
 
-    <main class="container">
-        <!-- Hero Section -->
-        <header class="hero">
-            <img src="https://www.nasa.gov/sites/default/files/thumbnails/image/nasa-logo-web-rgb.png" alt="NASA Logo" class="nasa-logo">
-            <h1>AuraRain</h1>
-            <p class="subtitle">Plan Your Future. Know the Weather of the Past.</p>
-            <p class="description">
-                AuraRain uses decades of NASA Earth observation data to calculate historical weather likelihoods for your outdoor events. Be prepared with data-driven insights before planning.
-            </p>
-            <a href="app.html" class="cta-button">🚀 Launch Application</a>
-        </header>
+<div class="background-gradient"></div>
+<canvas id="particles"></canvas>
 
-        <!-- How It Works Section -->
-        <section id="how-it-works">
-            <h2 class="section-title">How It Works</h2>
-            <div class="cards-container">
-                <div class="card">
-                    <div class="icon">📅</div>
-                    <h3>Select Date</h3>
-                    <p>Pick the day of your event, whether next week or next year.</p>
-                </div>
-                <div class="card">
-                    <div class="icon">📍</div>
-                    <h3>Pin Location</h3>
-                    <p>Use geolocation or map to target the exact spot.</p>
-                </div>
-                <div class="card">
-                    <div class="icon">☔</div>
-                    <h3>Get Historical Odds</h3>
-                    <p>Receive the probability of rain or extreme heat based on 20+ years of NASA satellite data.</p>
-                </div>
+<main class="container">
+    <!-- Hero Section -->
+    <header class="hero">
+        <img src="https://www.nasa.gov/sites/default/files/thumbnails/image/nasa-logo-web-rgb.png" alt="NASA Logo" class="nasa-logo">
+        <h1>AuraRain</h1>
+        <p class="subtitle">Plan Your Future. Know the Weather of the Past.</p>
+        <p class="description">
+            AuraRain uses decades of NASA Earth observation data to calculate historical weather likelihoods for your outdoor events. Be prepared with data-driven insights.
+        </p>
+        <a href="app.html" class="cta-button">🚀 Launch Application</a>
+        <div class="scroll-down">&#x2193;</div>
+    </header>
+
+    <!-- How It Works -->
+    <section id="how-it-works">
+        <h2 class="section-title">How It Works</h2>
+        <div class="cards-container">
+            <div class="card">
+                <div class="icon">📅</div>
+                <h3>Select Date</h3>
+                <p>Pick any day for your event — next week or next year.</p>
             </div>
-        </section>
-
-        <!-- Features Section -->
-        <section id="features">
-            <h2 class="section-title">Why AuraRain?</h2>
-            <div class="cards-container">
-                <div class="card">
-                    <div class="icon">🛰️</div>
-                    <h3>NASA Data</h3>
-                    <p>Direct connection to NASA POWER API ensures reliable, world-class satellite data.</p>
-                </div>
-                <div class="card">
-                    <div class="icon">📊</div>
-                    <h3>Decades of Records</h3>
-                    <p>Historical weather data over 20+ years provides accurate climatological insights.</p>
-                </div>
-                <div class="card">
-                    <div class="icon">🎯</div>
-                    <h3>Personalized Insight</h3>
-                    <p>Results are tailored to your date and location, far more useful than regional averages.</p>
-                </div>
+            <div class="card">
+                <div class="icon">📍</div>
+                <h3>Pin Location</h3>
+                <p>Use your location or map to target the exact spot.</p>
             </div>
-            <div class="bottom-cta">
-                <a href="app.html" class="cta-button">🚀 Try AuraRain Now</a>
+            <div class="card">
+                <div class="icon">☔</div>
+                <h3>Get Historical Odds</h3>
+                <p>See probability of rain or heat based on 20+ years of NASA satellite data.</p>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <footer>
-        <p>Built for NASA International Space Apps Challenge 2025 — Team AuraRain</p>
-    </footer>
+    <!-- Features -->
+    <section id="features">
+        <h2 class="section-title">Why AuraRain?</h2>
+        <div class="cards-container">
+            <div class="card">
+                <div class="icon">🛰️</div>
+                <h3>NASA Data</h3>
+                <p>Direct connection to NASA POWER API ensures reliable, world-class satellite data.</p>
+            </div>
+            <div class="card">
+                <div class="icon">📊</div>
+                <h3>Decades of Records</h3>
+                <p>20+ years of historical data ensures accurate climatological insights.</p>
+            </div>
+            <div class="card">
+                <div class="icon">🎯</div>
+                <h3>Personalized Insight</h3>
+                <p>Results are tailored to your date and location for better planning.</p>
+            </div>
+        </div>
+        <div class="bottom-cta">
+            <a href="app.html" class="cta-button">🚀 Try AuraRain Now</a>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>Built for NASA International Space Apps Challenge 2025 — Team AuraRain</p>
+</footer>
+
+<script>
+// PARTICLE BACKGROUND
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let particlesArray;
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    init();
+});
+
+class Particle {
+    constructor(x, y, size, speedX, speedY) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.speedX = speedX;
+        this.speedY = speedY;
+    }
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if(this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX;
+        if(this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY;
+    }
+    draw() {
+        ctx.fillStyle = 'rgba(255,255,255,0.7)';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
+        ctx.fill();
+    }
+}
+
+function init() {
+    particlesArray = [];
+    for(let i=0; i<150; i++){
+        let size = Math.random()*2+1;
+        let x = Math.random()*canvas.width;
+        let y = Math.random()*canvas.height;
+        let speedX = (Math.random()-0.5)*0.5;
+        let speedY = (Math.random()-0.5)*0.5;
+        particlesArray.push(new Particle(x, y, size, speedX, speedY));
+    }
+}
+function animate() {
+    ctx.clearRect(0,0,canvas.width, canvas.height);
+    particlesArray.forEach(p=>{p.update(); p.draw();});
+    requestAnimationFrame(animate);
+}
+
+init();
+animate();
+</script>
+
 </body>
 </html>
