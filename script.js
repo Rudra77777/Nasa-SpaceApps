@@ -3,9 +3,7 @@ const resultDiv = document.getElementById('result');
 const dateInput = document.getElementById('dateInput');
 
 // Set default date to today for the date picker
-if (dateInput) {
-    dateInput.valueAsDate = new Date();
-}
+dateInput.valueAsDate = new Date();
 
 checkLocationBtn.addEventListener('click', () => {
     if (!dateInput.value) {
@@ -35,10 +33,11 @@ async function calculateHistoricalLikelihood(position) {
     const currentYear = new Date().getFullYear();
     const startYear = currentYear - 21; // Go back 20 years from last year
     const endYear = currentYear - 1;
-    const totalYearsToQuery = endYear - startYear + 1;
+    const totalYears = endYear - startYear + 1;
 
-    resultDiv.innerHTML = `<p>Analyzing ${totalYearsToQuery} years of NASA data for ${month}/${day} at your location... This may take a moment.</p>`;
+    resultDiv.innerHTML = `<p>Analyzing ${totalYears} years of NASA data for ${month}/${day} at your location... This may take a moment.</p>`;
 
+    // Create an array to hold all the promises for our API calls
     const apiPromises = [];
 
     for (let year = startYear; year <= endYear; year++) {
@@ -46,63 +45,49 @@ async function calculateHistoricalLikelihood(position) {
         const parameters = 'PRECTOTCORR,T2M_MAX'; // Precipitation and Max Temperature
         const apiUrl = `https://power.larc.nasa.gov/api/temporal/daily/point?parameters=${parameters}&community=RE&longitude=${lon}&latitude=${lat}&start=${dateString}&end=${dateString}&format=JSON`;
         
-        apiPromises.push(fetch(apiUrl).then(response => {
-            if (!response.ok) return null; // If response is bad, return null
-            return response.json();
-        }));
+        // Add the fetch promise to our array
+        apiPromises.push(fetch(apiUrl).then(response => response.json()));
     }
 
     try {
-        const yearlyResults = await Promise.all(apiPromises);
+        // Wait for all 20 API calls to complete
+        const yearlyData = await Promise.all(apiPromises);
         
+        // Now, process the results
         let rainyDays = 0;
         let veryHotDays = 0;
         let validYears = 0;
 
-        yearlyResults.forEach(data => {
-            // --- ROBUSTNESS CHECK ---
-            // If the fetch failed or data structure is missing, skip this year.
-            if (!data || !data.properties || !data.properties.parameter || !data.properties.parameter.PRECTOTCORR || !data.properties.parameter.T2M_MAX) {
-                console.warn("Skipping a year due to missing or malformed data.");
-                return; // Skips this iteration of the loop
-            }
+        yearlyData.forEach(data => {
+            // Check if data for the year is valid
+            if (data.properties && data.properties.parameter) {
+                const precip = data.properties.parameter.PRECTOTCORR[Object.keys(data.properties.parameter.PRECTOTCORR)[0]];
+                const maxTemp = data.properties.parameter.T2M_MAX[Object.keys(data.properties.parameter.T2M_MAX)[0]];
 
-            const precipData = data.properties.parameter.PRECTOTCORR;
-            const tempData = data.properties.parameter.T2M_MAX;
-
-            // Check if there's actually a date entry inside the data
-            const dateKey = Object.keys(precipData)[0];
-            if (!dateKey) {
-                console.warn("Skipping a year due to empty data object.");
-                return;
-            }
-
-            const precip = precipData[dateKey];
-            const maxTemp = tempData[dateKey];
-
-            // Check for NASA's fill values (-999)
-            if (precip !== -999 && maxTemp !== -999) {
-                validYears++;
-                if (precip > 1.0) { // Threshold for a "rainy day" (e.g., > 1mm)
-                    rainyDays++;
-                }
-                if (maxTemp > 35) { // Threshold for "very hot" (e.g., > 35°C / 95°F)
-                    veryHotDays++;
+                // Check for fill values (-999)
+                if (precip !== -999 && maxTemp !== -999) {
+                    validYears++;
+                    if (precip > 1.0) { // Threshold for a "rainy day" (e.g., > 1mm)
+                        rainyDays++;
+                    }
+                    if (maxTemp > 35) { // Threshold for "very hot" (e.g., > 35°C / 95°F)
+                        veryHotDays++;
+                    }
                 }
             }
         });
 
-        if (validYears > 5) { // Only show results if we have at least 5 years of good data
+        if (validYears > 0) {
             const rainProbability = ((rainyDays / validYears) * 100).toFixed(0);
             const hotProbability = ((veryHotDays / validYears) * 100).toFixed(0);
             displayLikelihood(rainProbability, hotProbability, validYears, selectedDate);
         } else {
-            resultDiv.innerHTML = `<p>Could not retrieve enough historical data for this specific location and date to provide a reliable likelihood.</p>`;
+            resultDiv.innerHTML = `<p>Could not retrieve enough historical data for this location.</p>`;
         }
 
     } catch (error) {
-        resultDiv.innerHTML = `<p style="color: #e53e3e;">A critical error occurred. Please check the console.</p>`;
-        console.error("Full error:", error);
+        resultDiv.innerHTML = `<p style="color: #e53e3e;">An error occurred while fetching historical data.</p>`;
+        console.error(error);
     }
 }
 
@@ -114,4 +99,14 @@ function displayLikelihood(rainProb, hotProb, years, date) {
     resultDiv.style.animation = null; 
 
     resultDiv.innerHTML = `
-        <p style="font-size: 1rem; color: #9
+        <p style="font-size: 1rem; color: #9ca3af;">Based on ${years} years of NASA data for <strong>${formattedDate}</strong>:</p>
+        <div style="margin-top: 15px;">
+            <p class="rain-yes" style="font-size: 2.5rem;">${rainProb}%</p>
+            <p>Chance of a Wet Day (>1mm Rain)</p>
+        </div>
+        <div style="margin-top: 15px;">
+            <p class="rain-no" style="font-size: 2.5rem;">${hotProb}%</p>
+            <p>Chance of a Very Hot Day (>35°C)</p>
+        </div>
+    `;
+}
