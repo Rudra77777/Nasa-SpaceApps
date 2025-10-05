@@ -1,17 +1,118 @@
-/* Add this to your existing style.css */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap');
+
+body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: linear-gradient(180deg, #111827, #1e293b);
+    color: #e5e7eb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    background: rgba(30, 41, 59, 0.6);
+    padding: 30px 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+}
+
+header {
+    margin-bottom: 25px;
+}
+
+.nasa-logo {
+    width: 70px;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+h1 {
+    margin: 0;
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #a7b2ff, #f3d0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: #9ca3af;
+    margin-top: 5px;
+}
+
 #checkLocationBtn {
     width: 100%;
     padding: 15px;
     font-size: 1.1rem;
-    background-color: #3182ce;
+    font-family: 'Space Grotesk', sans-serif;
+    background-color: #4f46e5;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 #checkLocationBtn:hover {
-    background-color: #2b6cb0;
+    background-color: #4338ca;
+    transform: scale(1.02);
+}
+
+.result-box {
+    background-color: rgba(17, 24, 39, 0.8);
+    padding: 25px;
+    border-radius: 15px;
+    min-height: 150px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.result-box p {
+    margin: 5px 0;
+}
+
+.weather-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+.rain-yes, .rain-no {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.rain-yes { color: #7dd3fc; }
+.rain-no { color: #fcd34d; }
+
+
+footer {
+    margin-top: 30px;
+    font-size: 0.8rem;
+    color: #6b7280;
 }
