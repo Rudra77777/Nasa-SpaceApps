@@ -1,257 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AuraRain - Plan Your Future with NASA Data</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --space-dark: #0f172a;
-            --space-light: #1e293b;
-            --accent-glow: #6366f1;
-            --text-primary: #e2e8f0;
-            --text-secondary: #94a3b8;
-        }
-
-        body {
-            font-family: 'Space Grotesk', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--space-dark);
-            color: var(--text-primary);
-            overflow-x: hidden;
-        }
-
-        .background-gradient {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(225deg, #0f172a, #1d4ed8, #4f46e5, #312e81);
-            background-size: 400% 400%;
-            animation: gradientAnimation 20s ease infinite;
-        }
-
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .main-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* --- Hero Section --- */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            min-height: 100vh;
-        }
-
-        .hero .nasa-logo {
-            width: 100px;
-            opacity: 0.9;
-            margin-bottom: 1rem;
-        }
-
-        .hero h1 {
-            font-size: 5rem;
-            font-weight: 700;
-            margin: 0;
-            background: linear-gradient(90deg, #d8b4fe, #a5b4fc, #ffffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero .subtitle {
-            font-size: 1.5rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 1rem 0 1.5rem 0;
-        }
-        
-        /* --- NEW STYLE FOR THE DESCRIPTION --- */
-        .hero .description {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            max-width: 700px;
-            color: var(--text-primary);
-            margin: 0 0 2.5rem 0;
-        }
-
-        .cta-button {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: white;
-            background-color: var(--accent-glow);
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: pulseGlow 2s infinite;
-        }
-
-        .cta-button:hover {
-            transform: scale(1.05);
-            animation-play-state: paused;
-            box-shadow: 0 0 40px var(--accent-glow);
-        }
-        
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 10px var(--accent-glow); }
-            50% { box-shadow: 0 0 25px var(--accent-glow); }
-            100% { box-shadow: 0 0 10px var(--accent-glow); }
-        }
-
-        /* --- Section Styling --- */
-        section {
-            padding: 6rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .card {
-            background: rgba(30, 41, 59, 0.6);
-            padding: 2rem;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            text-align: center;
-        }
-
-        .card .icon {
-            background: var(--accent-glow);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem auto;
-        }
-        
-        .card .icon svg {
-            width: 32px;
-            height: 32px;
-            color: white;
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .card p {
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        /* --- Footer --- */
-        footer {
-            text-align: center;
-            padding: 3rem 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-secondary);
-        }
-        
-        /* --- Responsive --- */
-        @media (max-width: 900px) {
-            .cards-container {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 600px) {
-            .hero h1 { font-size: 3.5rem; }
-            .hero .subtitle { font-size: 1.2rem; }
-            .hero .description { font-size: 1rem; }
-        }
-
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AuraRain - Plan Your Future with NASA Data</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --space-dark: #0f172a;
+      --space-light: #1e293b;
+      --accent-glow: #6366f1;
+      --text-primary: #e2e8f0;
+      --text-secondary: #94a3b8;
+    }
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      margin: 0;
+      background-color: var(--space-dark);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    .background-gradient {
+      position: fixed; inset: 0;
+      background: linear-gradient(225deg, #0f172a, #1d4ed8, #4f46e5, #312e81);
+      background-size: 400% 400%;
+      animation: gradientAnimation 20s ease infinite;
+      z-index: -1;
+    }
+    @keyframes gradientAnimation {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    .main-container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    /* Hero */
+    .hero {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      min-height: 100vh; text-align: center;
+    }
+    .nasa-logo { width: 90px; margin-bottom: 1rem; }
+    .hero h1 {
+      font-size: 4rem; margin: 0;
+      background: linear-gradient(90deg, #d8b4fe, #a5b4fc, #ffffff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .subtitle { font-size: 1.4rem; color: var(--text-secondary); margin: 1rem 0; }
+    .description { max-width: 700px; margin-bottom: 2.5rem; line-height: 1.7; }
+    .cta-button {
+      font-size: 1.25rem; font-weight: 700;
+      background: var(--accent-glow); color: white;
+      padding: 1rem 2.5rem; border-radius: 50px; text-decoration: none;
+      transition: transform .3s, box-shadow .3s;
+      animation: pulseGlow 2s infinite;
+    }
+    .cta-button:hover { transform: scale(1.05); box-shadow: 0 0 40px var(--accent-glow); animation-play-state: paused; }
+    @keyframes pulseGlow {
+      0% {box-shadow: 0 0 10px var(--accent-glow);}
+      50% {box-shadow: 0 0 25px var(--accent-glow);}
+      100% {box-shadow: 0 0 10px var(--accent-glow);}
+    }
+    /* Sections */
+    section { padding: 5rem 0; }
+    .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 3rem; }
+    .cards-container { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .card {
+      background: rgba(30,41,59,0.6); padding: 2rem; border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+      text-align: center; transition: transform .3s, box-shadow .3s;
+    }
+    .card:hover { transform: translateY(-8px); box-shadow: 0 0 20px rgba(99,102,241,0.4); }
+    .card .icon { background: var(--accent-glow); width: 60px; height: 60px; border-radius: 50%; display:flex;align-items:center;justify-content:center; margin:0 auto 1rem; }
+    .card h3 { margin-bottom: .5rem; }
+    .card p { color: var(--text-secondary); line-height: 1.6; }
+    /* Footer */
+    footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: var(--text-secondary); }
+    .bottom-cta { margin-top: 2rem; }
+  </style>
 </head>
 <body>
-    <div class="background-gradient"></div>
+  <div class="background-gradient"></div>
+  <main class="main-container">
+    <!-- Hero -->
+    <header class="hero">
+      <img src="https://www.nasa.gov/wp-content/themes/nasa/assets/images/nasa-logo.svg" alt="NASA Logo" class="nasa-logo">
+      <h1>AuraRain</h1>
+      <p class="subtitle">Plan Your Future. Know the Weather of the Past.</p>
+      <p class="description">
+        AuraRain harnesses over two decades of NASA's Earth observation data to calculate the historical likelihood of adverse weather. Get data-driven insights for your outdoor events, vacations, and hikes—long before a traditional forecast is available.
+      </p>
+      <a href="app.html" class="cta-button">🚀 Launch Application</a>
+    </header>
 
-    <main class="main-container">
-        <header class="hero">
-            <img src="https://www.nasa.gov/wp-content/themes/nasa/assets/images/nasa-logo.svg" alt="NASA Logo" class="nasa-logo">
-            <h1>AuraRain</h1>
-            <p class="subtitle">Plan Your Future. Know the Weather of the Past.</p>
-            
-            <p class="description">
-                AuraRain harnesses over two decades of NASA's Earth observation data to calculate the historical likelihood of adverse weather. Get data-driven insights for your outdoor events, vacations, and hikes—long before a traditional forecast is available.
-            </p>
-            
-            <a href="app.html" class="cta-button">Launch Application &raquo;</a>
-        </header>
+    <!-- How it works -->
+    <section id="how-it-works">
+      <h2 class="section-title">From Question to Insight in Seconds</h2>
+      <div class="cards-container">
+        <div class="card"><div class="icon">📅</div><h3>1. Select Date</h3><p>Pick the day of your event—next month or next year.</p></div>
+        <div class="card"><div class="icon">📍</div><h3>2. Pin Location</h3><p>Use geolocation or map to set the exact spot.</p></div>
+        <div class="card"><div class="icon">☔</div><h3>3. Get Historical Odds</h3><p>Instantly see the probability of rain or extreme heat from 20+ years of NASA data.</p></div>
+      </div>
+    </section>
 
-        <section id="how-it-works">
-            <h2 class="section-title">From Question to Insight in Seconds</h2>
-            <div class="cards-container">
-                <div class="card">
-                    <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0h18M12 11.25h.008v.008H12v-.008z" /></svg></div>
-                    <h3>1. Select Your Date</h3>
-                    <p>Use the simple date picker to choose any day of the year you're planning for—whether it's next month or next year.</p>
-                </div>
-                <div class="card">
-                    <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg></div>
-                    <h3>2. Pin Your Location</h3>
-                    <p>With a single click, the app uses your precise geolocation to target the analysis. No addresses or coordinates needed.</p>
-                </div>
-                <div class="card">
-                    <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15z" /><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.25-5.25" /></svg></div>
-                    <h3>3. Get Historical Odds</h3>
-                    <p>Instantly receive the probability of rain and extreme heat, calculated from over 20 years of historical NASA satellite data.</p>
-                </div>
-            </div>
-        </section>
+    <!-- Features -->
+    <section id="features">
+      <h2 class="section-title">Why AuraRain?</h2>
+      <div class="cards-container">
+        <div class="card"><div class="icon">🛰️</div><h3>NASA Data</h3><p>Powered by NASA POWER API for satellite-derived weather data.</p></div>
+        <div class="card"><div class="icon">📊</div><h3>Decades of Records</h3><p>Over 20 years of data ensures reliable climatological trends.</p></div>
+        <div class="card"><div class="icon">🎯</div><h3>Personalized Insight</h3><p>Results tailored to your specific location and date, not just a regional average.</p></div>
+      </div>
+      <div class="bottom-cta">
+        <a href="app.html" class="cta-button">🚀 Try AuraRain Now</a>
+      </div>
+    </section>
+  </main>
 
-        <section id="features">
-            <h2 class="section-title">Powered by NASA's Earth Science</h2>
-            <div class="cards-container">
-                <div class="card">
-                    <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5s7.5-3.75 7.5-11.25S8.625 3.75 12 3.75s4.5 1.875 4.5 7.5c0 7.5 7.5 11.25 7.5 11.25m-17.25 0h17.25" /></svg></div>
-                    <h3>Authentic NASA Data</h3>
-                    <p>We connect directly to the NASA POWER API, ensuring you get insights derived from world-class satellite observations and models.</p>
-                </div>
-                <div class="card">
-                    <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div>
-                    <h3>Decades of Data</h3>
-                    <p>Our analysis isn't just a snapshot. We process over two decades of historical data to give you a true climatological likelihood.</p>
-                </div>
-                <div class="card">
-                    <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg></div>
-                    <h3>Personalized Insight</h3>
-                    <p>The results are tailored to your specific location and day, giving you personalized odds far more useful than a regional average.</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>A project for the NASA International Space Apps Challenge 2025.</p>
-    </footer>
+  <footer>
+    <p>Built for NASA International Space Apps Challenge 2025 — Team AuraRain</p>
+  </footer>
 </body>
 </html>
