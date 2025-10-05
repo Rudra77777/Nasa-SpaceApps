@@ -137,3 +137,50 @@ section{
 }
 
 .card{
+    background: rgba(30,41,59,0.7);
+    padding:2rem;
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    text-align:center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 25px rgba(99,102,241,0.5);
+}
+
+.card .icon{
+    font-size:2.5rem;
+    margin-bottom:1rem;
+}
+
+.card h3{
+    font-size:1.4rem;
+    margin-bottom:0.5rem;
+}
+
+.card p{
+    font-size:0.95rem;
+    color:var(--text-muted);
+    line-height:1.5;
+}
+
+.bottom-cta{
+    margin-top:2.5rem;
+    text-align:center;
+}
+
+footer{
+    text-align:center;
+    padding:2rem 1rem;
+    color:var(--text-muted);
+}
+
+/* Responsive */
+@media(max-width:600px){
+    h1{font-size:3rem;}
+    .subtitle{font-size:1.1rem;}
+    .description{font-size:0.95rem;}
+}
