@@ -116,3 +116,25 @@ footer {
     font-size: 0.8rem;
     color: #6b7280;
 }
+/* ADD THIS TO THE END OF YOUR style.css */
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #9ca3af;
+    font-size: 0.9rem;
+}
+#dateInput {
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(17, 24, 39, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #e5e7eb;
+    border-radius: 8px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
